@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>&#2438;&#2478;&#2494;&#2480; Kolkata</title>
+		<link rel="icon" href="images/title.png" type="image/x-icon">
+		<style type="text/css">
+			.loaderBg{
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				background: #000;
+				z-index: 500;
+			}
+		</style>
+		<script type="text/javascript">
+			var cSpeed=9;
+			var cWidth=120;
+			var cHeight=128;
+			var cTotalFrames=29;
+			var cFrameWidth=120;
+			var cImageSrc='images/sprites.gif';
+			
+			var cImageTimeout=false;
+			var cIndex=0;
+			var cXpos=0;
+			var cPreloaderTimeout=false;
+			var SECONDS_BETWEEN_FRAMES=0;
+			function startAnimation(){
+				document.getElementById('loaderImage').style.position="absolute";
+				document.getElementById('loaderImage').style.top="37%";
+				document.getElementById('loaderImage').style.left="45%";
+				document.getElementById('loaderImage').style.backgroundImage='url('+cImageSrc+')';
+				document.getElementById('loaderImage').style.width=cWidth+'px';
+				document.getElementById('loaderImage').style.height=cHeight+'px';
+				
+				//FPS = Math.round(100/(maxSpeed+2-speed));
+				FPS = Math.round(100/cSpeed);
+				SECONDS_BETWEEN_FRAMES = 1 / FPS;
+				
+				cPreloaderTimeout=setTimeout('continueAnimation()', SECONDS_BETWEEN_FRAMES/1000);
+				
+			}
+			
+			function continueAnimation(){
+				
+				cXpos += cFrameWidth;
+				//increase the index so we know which frame of our animation we are currently on
+				cIndex += 1;
+				 
+				//if our cIndex is higher than our total number of frames, we're at the end and should restart
+				if (cIndex >= cTotalFrames) {
+					cXpos =0;
+					cIndex=0;
+				}
+				
+				if(document.getElementById('loaderImage'))
+					document.getElementById('loaderImage').style.backgroundPosition=(-cXpos)+'px 0';
+				
+				cPreloaderTimeout=setTimeout('continueAnimation()', SECONDS_BETWEEN_FRAMES*1000);
+			}
+			
+			function stopAnimation(){//stops animation
+				clearTimeout(cPreloaderTimeout);
+				cPreloaderTimeout=false;
+			}
+			
+			function imageLoader(s, fun)//Pre-loads the sprites image
+			{
+				clearTimeout(cImageTimeout);
+				cImageTimeout=0;
+				genImage = new Image();
+				genImage.onload=function (){cImageTimeout=setTimeout(fun, 0)};
+				genImage.onerror=new Function('alert(\'Could not load the image\')');
+				genImage.src=s;
+			}
+			
+			//The following code starts the animation
+			new imageLoader(cImageSrc, 'startAnimation()');
+		</script>
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.min-1.11.1.css">
+		<link rel="stylesheet" type="text/css" href="css/main-style.css">
+	</head>
+	<body>
+		<section class="loaderBg">
+			<div id="loaderImage"></div>
+		</section>
+		<section class="container">
+			<aside class="expandedMenu">
+				
+			</aside>
+			<section class="overlay"></section>
+			<header class="topMenu row">
+				<section class="left leftMenu">
+					<a href="#" class="left menuBtn"><span class="menuTag">Menu</span></a>
+					<section class="left">
+						<ul class="menuOption">
+							<li><a href="#">Overview</a></li>
+							<li><a href="#/explore">Explore</a></li>
+							<li><a href="#">Forum</a></li>
+							<li><a href="#">Gallery</a></li>
+							<li><a href="#">Know Us</a></li>
+						</ul>
+					</section>
+				</section>
+				<section class="right rightMenu">
+					<section class="right">
+						<a href="#" class="userLogin"><span>Login</span><span class="tohide">/Register</span></a>
+					</section>
+				</section>
+			</header>
+			<section class="backface scrollable">
+				<div class="bg"></div>
+				<div class="bg"></div>
+				<div class="bg"></div>
+				<div class="bg"></div>
+				<div class="bg"></div>
+			</section>
+			<section class="floating scrollable row">
+				<section id="index" class="row">
+					<section class="mainSection">
+						<img class="mainLogo" src="images/main-logo.png" alt="amar kolkata"/>
+					</section>
+				</section>
+				<section id="kolkata" class="row">
+					<section class="left content">
+						<section class="victoria"></section>
+						<section class="white-overlay"></section>
+					</section>
+					<section class="aboutSection about-kolkata">
+						<h2>W E L C O M E</h2>
+						<span class="dark-separator"></span><br>
+						<span class="about-content">Kolkata - our city of joy and pride - a abode for millions - a dwelling place where several cultures meet. Kolkata is such a city which can make you realize that there is so much joy in little pleasures of life. Our city of joy has innumerable number of things to boast of - our tradition, our famous architectures, our noble laureates, our mouth watering food and the list goes on. The hustling city has always filled our hearts with ecstacy.</span><br>
+						<button id="moreKolkata">More</button>
+					</section>
+				</section>
+				<section id="homeExplore" class="row">
+					<section class="right content">
+						<section class="flipped-white-overlay"></section>
+						<section class="kumortuli"></section>
+					</section>
+					<section class="aboutSection about-explore">
+						<h2>H E R I T A G E</h2>
+						<span class="dark-separator"></span><br>
+						<span class="about-content">During the British colonial era from 1700 to 1912, when Kolkata (then known as Calcutta) was the capital of British India, Kolkata witnessed a spate of frenzied construction activity of buildings largely influenced by the conscious intermingling of Neo-Gothic, Baroque, Neo-Classical, Oriental and Islamic schools of design. The current layout of much of the architectural variety in Kolkata owes its origins to European styles and tastes imported by the British and, to a much lesser extent, the Portuguese and French.</span><br>
+						<button id="moreKolkata">More</button>
+					</section>
+				</section>
+				<section id="homeForum" class="row">
+					<section class="left content">
+						<section class="adda"></section>
+						<section class="white-overlay"></section>
+					</section>
+					<section class="aboutSection about-forum">
+						<h2>A D D A</h2>
+						<span class="dark-separator"></span><br>
+						<span class="about-content">its the intellectual exchange of ideas and thoughts relished by all Kolkatan. The website has a public forum for all registered members to share there views, post any query and provide answers to people, seeking help.</span><br>
+						<button id="moreKolkata">More</button>
+					</section>
+				</section>
+				<section id="homeGallery" class="row">
+					<section class="right content">
+						<section class="flipped-white-overlay"></section>
+						<section class="princep-ghat"></section>
+					</section>
+					<section class="aboutSection about-gallery">
+						
+					</section>
+				</section>
+			</section>
+		</section>
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/jquery-ui.min-1.11.1.js"></script>
+		<script type="text/javascript" src="js/enscroll-0.6.0.min.js"></script>
+		<script type="text/javascript" src="js/main-script.js"></script>
+		<script type="text/javascript">
+			var everythingLoaded = setInterval(function() {
+			  if (/loaded|complete/.test(document.readyState)) {
+			    clearInterval(everythingLoaded);
+			    loadpage();
+			  }
+			}, 10);
+
+			function loadpage(){
+				setTimeout(function(){
+					$(".loaderImage").hide();
+					setTimeout(function(){
+						$(".loaderBg").slideUp(500);
+					},500);
+					clearInterval(cPreloaderTimeout);
+				},2500);
+			}
+		</script>
+	</body>
+</html>
